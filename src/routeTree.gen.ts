@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminResetPasswordRouteImport } from './routes/admin/reset-password'
 import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
@@ -55,6 +56,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/courses': typeof CoursesRouteWithChildren
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/courses/$slug': typeof CoursesSlugRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesRouteWithChildren
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/courses/$slug': typeof CoursesSlugRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/courses': typeof CoursesRouteWithChildren
   '/feedback': typeof FeedbackRoute
   '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/courses/$slug': typeof CoursesSlugRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/feedback'
     | '/privacy'
+    | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
     | '/courses/$slug'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/feedback'
     | '/privacy'
+    | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
     | '/courses/$slug'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/feedback'
     | '/privacy'
+    | '/admin/dashboard'
     | '/admin/login'
     | '/admin/reset-password'
     | '/courses/$slug'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   CoursesRoute: typeof CoursesRouteWithChildren
   FeedbackRoute: typeof FeedbackRoute
   PrivacyRoute: typeof PrivacyRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminResetPasswordRoute: typeof AdminResetPasswordRoute
 }
@@ -210,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -253,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   CoursesRoute: CoursesRouteWithChildren,
   FeedbackRoute: FeedbackRoute,
   PrivacyRoute: PrivacyRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminResetPasswordRoute: AdminResetPasswordRoute,
 }
