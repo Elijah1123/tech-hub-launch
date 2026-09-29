@@ -1,0 +1,4 @@
+- [x] Establish brand assets, imagery, design tokens and Cloud schema.
+- [ ] Build public pages, course discovery, applications, contact and feedback.
+- [ ] Build administrator sign-in and management dashboard.
+- [ ] Verify pages and flows; document external setup blockers.
