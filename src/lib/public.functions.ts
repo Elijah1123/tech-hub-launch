@@ -33,6 +33,7 @@ export const submitApplication = createServerFn({ method: 'POST' }).inputValidat
   const { website, ...values } = data;
   if (website) throw new Error('Invalid submission.');
   const { data: result, error } = await supabaseAdmin.from('applications').insert(values).select('reference_number').single();
+  if (error?.code === '23505') throw new Error('An application for this course has already been submitted with this email address.');
   if (error) throw new Error('Your application could not be submitted. Please try again.');
   return { reference: result.reference_number };
 });
