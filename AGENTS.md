@@ -12,3 +12,5 @@
 - Keep public form writes in validated server functions and private reads in role-gated authenticated queries; this prevents exposure of applicant data.
 - Keep the three course records in Cloud as the public catalog; this lets administrator edits appear on public pages.
 - Keep social and WhatsApp destinations in one configuration module; official contact details are not yet supplied.
+- Keep `/courses` as an Outlet layout with a separate index leaf; otherwise the dynamic course detail child cannot render.
+- Keep administrator records behind verified Cloud identity and a server-checked admin role; client-side navigation is not authorization.

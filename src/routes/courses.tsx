@@ -1,5 +1,2 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { getCourses } from '@/lib/public.functions';
-import { CourseCard } from '@/components/course-card';
-export const Route = createFileRoute('/courses')({loader:()=>getCourses(),head:()=>({meta:[{title:'Explore Courses | Mzalendo Tech Hub'},{name:'description',content:'Explore practical online web development, mobile app development and cybersecurity courses.'},{property:'og:title',content:'Explore Courses | Mzalendo Tech Hub'},{property:'og:description',content:'Choose your path in technology with practical online training.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Courses});
-function Courses(){const courses=Route.useLoaderData();return <><section className="bg-surface py-20"><div className="section-wrap"><p className="text-xs font-bold uppercase tracking-widest text-teal">Our programmes</p><h1 className="mt-3 text-4xl font-bold text-primary sm:text-5xl">Explore Our Courses</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">Choose your path, develop practical skills, and take the next step towards your technology career.</p></div></section><section className="section-space"><div className="section-wrap grid gap-6 md:grid-cols-2 lg:grid-cols-3">{courses.map(c=><CourseCard key={c.id} course={c}/>)}</div></section></>}
+import { createFileRoute, Outlet } from '@tanstack/react-router';
+export const Route = createFileRoute('/courses')({ component: () => <Outlet /> });

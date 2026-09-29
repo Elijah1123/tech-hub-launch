@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowRight, ArrowLeft, ArrowUpRight, Code2, ShieldCheck, Smartphone, Lightbulb, Users, BriefcaseBusiness, Laptop, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ArrowUpRight, Code2, ShieldCheck, Lightbulb, Users, BriefcaseBusiness, Laptop, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { CourseCard } from '@/components/course-card';
