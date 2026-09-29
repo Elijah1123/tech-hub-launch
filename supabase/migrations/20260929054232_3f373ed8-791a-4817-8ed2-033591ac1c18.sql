@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX applications_unique_email_course ON public.applications (lower(email), course_id); CREATE INDEX applications_created_at ON public.applications (created_at DESC); CREATE INDEX feedback_created_at ON public.feedback (created_at DESC); CREATE INDEX inquiries_created_at ON public.contact_inquiries (created_at DESC);
