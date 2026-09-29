@@ -14,4 +14,4 @@
 - Keep social and WhatsApp destinations in one configuration module; official contact details are not yet supplied.
 - Keep `/courses` as an Outlet layout with a separate index leaf; otherwise the dynamic course detail child cannot render.
 - Keep administrator records behind verified Cloud identity and a server-checked admin role; client-side navigation is not authorization.
-- Treat zero tuition and “To be confirmed” as unpublished course logistics, not free tuition; official fees, dates, schedules, and contact destinations await confirmation.
+- Keep confirmed course fees, dates and schedules in Cloud course records; administrator changes then remain visible on every public course surface.
