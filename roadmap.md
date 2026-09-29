@@ -1,0 +1,7 @@
+- [x] Establish brand assets, imagery, design tokens and Cloud schema.
+- [x] Build public pages, course discovery, applications, contact and feedback.
+- [x] Build administrator sign-in and management dashboard.
+- [x] Verify public page rendering, public form submissions and signed-out admin access.
+- [ ] Verify authenticated admin management — blocked until a designated administrator email/account exists.
+- [ ] Configure official WhatsApp, email and social destinations — blocked until official details are provided.
+- [ ] Confirm fees, schedules, course start dates and privacy retention period — blocked until institution approves details.

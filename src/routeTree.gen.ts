@@ -10,33 +10,176 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminResetPasswordRouteImport } from './routes/admin/reset-password'
+import { Route as CoursesIndexRouteImport } from './routes/courses.index'
+import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
+  id: '/admin/reset-password',
+  path: '/admin/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesIndexRoute = CoursesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CoursesRoute,
+} as any)
+const CoursesSlugRoute = CoursesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CoursesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
+  '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRouteWithChildren
+  '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/courses/': typeof CoursesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
+  '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/courses': typeof CoursesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apply': typeof ApplyRoute
+  '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRouteWithChildren
+  '/feedback': typeof FeedbackRoute
+  '/privacy': typeof PrivacyRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/courses/': typeof CoursesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/contact'
+    | '/courses'
+    | '/feedback'
+    | '/privacy'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/reset-password'
+    | '/courses/$slug'
+    | '/courses/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/contact'
+    | '/feedback'
+    | '/privacy'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/reset-password'
+    | '/courses/$slug'
+    | '/courses'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/contact'
+    | '/courses'
+    | '/feedback'
+    | '/privacy'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/reset-password'
+    | '/courses/$slug'
+    | '/courses/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ApplyRoute: typeof ApplyRoute
+  ContactRoute: typeof ContactRoute
+  CoursesRoute: typeof CoursesRouteWithChildren
+  FeedbackRoute: typeof FeedbackRoute
+  PrivacyRoute: typeof PrivacyRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminResetPasswordRoute: typeof AdminResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +191,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reset-password': {
+      id: '/admin/reset-password'
+      path: '/admin/reset-password'
+      fullPath: '/admin/reset-password'
+      preLoaderRoute: typeof AdminResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/': {
+      id: '/courses/'
+      path: '/'
+      fullPath: '/courses/'
+      preLoaderRoute: typeof CoursesIndexRouteImport
+      parentRoute: typeof CoursesRoute
+    }
+    '/courses/$slug': {
+      id: '/courses/$slug'
+      path: '/$slug'
+      fullPath: '/courses/$slug'
+      preLoaderRoute: typeof CoursesSlugRouteImport
+      parentRoute: typeof CoursesRoute
+    }
   }
 }
 
+interface CoursesRouteChildren {
+  CoursesSlugRoute: typeof CoursesSlugRoute
+  CoursesIndexRoute: typeof CoursesIndexRoute
+}
+
+const CoursesRouteChildren: CoursesRouteChildren = {
+  CoursesSlugRoute: CoursesSlugRoute,
+  CoursesIndexRoute: CoursesIndexRoute,
+}
+
+const CoursesRouteWithChildren =
+  CoursesRoute._addFileChildren(CoursesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ApplyRoute: ApplyRoute,
+  ContactRoute: ContactRoute,
+  CoursesRoute: CoursesRouteWithChildren,
+  FeedbackRoute: FeedbackRoute,
+  PrivacyRoute: PrivacyRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminResetPasswordRoute: AdminResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

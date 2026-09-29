@@ -1,0 +1,15 @@
+CREATE SCHEMA IF NOT EXISTS private;
+GRANT USAGE ON SCHEMA private TO authenticated, service_role;
+CREATE OR REPLACE FUNCTION private.has_role(_user_id uuid, _role public.app_role) RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$ SELECT EXISTS (SELECT 1 FROM public.user_roles WHERE user_id = _user_id AND role = _role) $$;
+REVOKE ALL ON FUNCTION private.has_role(uuid,public.app_role) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION private.has_role(uuid,public.app_role) TO authenticated, service_role;
+ALTER POLICY roles_read ON public.user_roles USING (user_id = auth.uid() OR private.has_role(auth.uid(),'admin'));
+ALTER POLICY roles_admin_write ON public.user_roles USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY admin_profiles_read ON public.admin_profiles USING (auth_user_id = auth.uid() OR private.has_role(auth.uid(),'admin'));
+ALTER POLICY admin_profiles_write ON public.admin_profiles USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY courses_admin_read ON public.courses USING (private.has_role(auth.uid(),'admin'));
+ALTER POLICY courses_admin_write ON public.courses USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY applications_admin ON public.applications USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY feedback_admin ON public.feedback USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+ALTER POLICY inquiries_admin ON public.contact_inquiries USING (private.has_role(auth.uid(),'admin')) WITH CHECK (private.has_role(auth.uid(),'admin'));
+DROP FUNCTION public.has_role(uuid,public.app_role);
