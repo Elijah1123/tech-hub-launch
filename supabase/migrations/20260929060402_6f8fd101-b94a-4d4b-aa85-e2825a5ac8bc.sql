@@ -1,0 +1,2 @@
+UPDATE public.courses SET start_date = DATE '2026-10-23', duration = '3 months', learning_mode = 'Online Classes', schedule = 'Monday – Friday', weekly_hours = '15–20 hours per week', tuition_kes = 30000, tuition_usd = 250 WHERE slug = 'cybersecurity';
+UPDATE public.courses SET start_date = DATE '2027-01-25', duration = '4 months', learning_mode = 'Online Classes', schedule = 'Monday – Friday', weekly_hours = '15–20 hours per week', tuition_kes = 40000, tuition_usd = 330 WHERE slug IN ('software-engineering-web', 'software-engineering-mobile-app');
