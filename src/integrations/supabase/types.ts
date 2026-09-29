@@ -14,16 +14,230 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_profiles: {
+        Row: {
+          auth_user_id: string
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          auth_user_id: string
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          auth_user_id?: string
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      applications: {
+        Row: {
+          admin_notes: string
+          consent_given: boolean
+          contact_number: string
+          course_id: string
+          created_at: string
+          current_location: string
+          email: string
+          full_name: string
+          id: string
+          reference_number: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string
+          consent_given: boolean
+          contact_number: string
+          course_id: string
+          created_at?: string
+          current_location: string
+          email: string
+          full_name: string
+          id?: string
+          reference_number?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string
+          consent_given?: boolean
+          contact_number?: string
+          course_id?: string
+          created_at?: string
+          current_location?: string
+          email?: string
+          full_name?: string
+          id?: string
+          reference_number?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contact_inquiries: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          message: string
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          message: string
+          status?: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          created_at: string
+          description: string
+          duration: string
+          id: string
+          is_active: boolean
+          learning_mode: string
+          schedule: string
+          slug: string
+          start_date: string | null
+          title: string
+          tuition_kes: number
+          tuition_usd: number
+          updated_at: string
+          weekly_hours: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          duration: string
+          id?: string
+          is_active?: boolean
+          learning_mode?: string
+          schedule?: string
+          slug: string
+          start_date?: string | null
+          title: string
+          tuition_kes: number
+          tuition_usd: number
+          updated_at?: string
+          weekly_hours?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          duration?: string
+          id?: string
+          is_active?: boolean
+          learning_mode?: string
+          schedule?: string
+          slug?: string
+          start_date?: string | null
+          title?: string
+          tuition_kes?: number
+          tuition_usd?: number
+          updated_at?: string
+          weekly_hours?: string
+        }
+        Relationships: []
+      }
+      feedback: {
+        Row: {
+          category: string
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          message: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          message: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          message?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +364,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
