@@ -25,9 +25,12 @@ export const getSiteTraffic = createServerFn({ method: 'GET' })
   .handler(async ({ context }) => {
     const { data: role, error: roleError } = await context.supabase.from('user_roles').select('role').eq('user_id', context.userId).eq('role', 'admin').maybeSingle();
     if (roleError || !role) throw new Error('Administrator access required.');
-    const { data, error } = await context.supabase.from('site_events').select('event_type,target');
-    if (error) throw new Error('Could not load traffic.');
     const totals: Record<string, number> = {};
-    for (const row of data ?? []) totals[row.target] = (totals[row.target] ?? 0) + 1;
+    for (let offset = 0; ; offset += 1000) {
+      const { data, error } = await context.supabase.from('site_events').select('target').range(offset, offset + 999);
+      if (error) throw new Error('Could not load traffic.');
+      for (const row of data ?? []) totals[row.target] = (totals[row.target] ?? 0) + 1;
+      if (!data || data.length < 1000) break;
+    }
     return totals;
   });
