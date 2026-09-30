@@ -6,3 +6,5 @@
 - [ ] Configure official WhatsApp, email and social destinations — blocked until official details are provided.
 - [x] Publish confirmed fees, schedules and course start dates for all three courses.
 - [ ] Confirm privacy retention period — blocked until institution approves details.
+- [ ] Add fixed WhatsApp entry point and count page visits and social/WhatsApp clicks in the administrator dashboard; official WhatsApp number and social URLs remain unprovided.
+- [ ] Verify that submitted applications, feedback and contact messages are visible in the administrator dashboard once access is provisioned.
