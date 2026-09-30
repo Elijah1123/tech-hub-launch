@@ -15,3 +15,4 @@
 - Keep `/courses` as an Outlet layout with a separate index leaf; otherwise the dynamic course detail child cannot render.
 - Keep administrator records behind verified Cloud identity and a server-checked admin role; client-side navigation is not authorization.
 - Keep confirmed course fees, dates and schedules in Cloud course records; administrator changes then remain visible on every public course surface.
+- Record anonymous public activity through validated events and expose totals only to role-verified administrators; visitors' personal details must not be stored for traffic counts.
