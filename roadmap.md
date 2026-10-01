@@ -8,3 +8,5 @@
 - [ ] Confirm privacy retention period — blocked until institution approves details.
 - [ ] Add fixed WhatsApp entry point and count page visits and social/WhatsApp clicks in the administrator dashboard; official WhatsApp number and social URLs remain unprovided.
 - [ ] Verify that submitted applications, feedback and contact messages are visible in the administrator dashboard once access is provisioned.
+- [ ] Provision and test the designated administrator sign-in and complete the dashboard presentation.
+- [ ] Remove the Connect With Us social icons and link the fixed WhatsApp button to the supplied QR destination.
