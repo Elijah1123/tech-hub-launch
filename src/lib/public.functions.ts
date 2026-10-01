@@ -4,8 +4,9 @@ import { z } from 'zod';
 import type { Course } from './site';
 
 function publicClient() {
-  const key = process.env['SUPABASE_PUBLISHABLE_KEY'];
-  const url = process.env['SUPABASE_URL'];
+  // Fall back to the public build-time values when the runtime env isn't set (e.g. on Netlify).
+  const key = process.env['SUPABASE_PUBLISHABLE_KEY'] || import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'];
+  const url = process.env['SUPABASE_URL'] || import.meta.env['VITE_SUPABASE_URL'];
   if (!key || !url) throw new Error('Course catalog is temporarily unavailable.');
   return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (input, init) => {
     const headers = new Headers(init?.headers);
